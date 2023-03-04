@@ -1,7 +1,41 @@
 import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './App.css';
+import bucket from '../src/cosmic'
 
-function App() {
+async function Posts (){
+
+  const data = await bucket.objects
+    .find({
+      type: "products", // Object Type slug
+    })
+    .props("title,slug,metadata") // response properties
+    .limit(10);
+
+    return data
+  }
+
+function App() {   
+  
+  const [results, setResults] = useState([])
+
+  const getData = async () =>{
+      const data = await bucket.objects
+        .find({
+          type: "posts", // Object Type slug
+        })
+        .props("title,slug,metadata") // response properties
+        .limit(10);
+
+      setResults(data);
+  }
+
+  useEffect(() => {
+    getData()
+  }, []);
+
+  console.log(results);
+  
   return (
     <div className="App">
       <header className="App-header">
