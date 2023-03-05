@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import "../App.css";
 import parse from "html-react-parser";
 
+// Sending data as props to main component
 export default function Main(props) {
   let data = props.results.objects
-
-  console.log(data);
 
   return (
     <>

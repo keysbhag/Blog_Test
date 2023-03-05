@@ -1,3 +1,4 @@
+//Importing API from Cosmic website
 import Cosmic from "cosmicjs";
 
 const bucket = Cosmic().bucket({

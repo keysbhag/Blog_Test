@@ -4,9 +4,11 @@ import bucket from "../src/cosmic";
 import Main from "./components/Main";
 
 function App() {
+  // State management for fetched data and buffer for retrieving data
   const [results, setResults] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Requesting data
   const getData = async () => {
     const data = await bucket.objects
       .find({
@@ -18,6 +20,7 @@ function App() {
     setResults(data);
     setIsLoaded(true);
   };
+  // Effect to retrieve data only once when DOM is loaded
   useEffect(() => {
     getData();
   }, []);
